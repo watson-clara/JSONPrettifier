@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
-	"net/http"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -33,9 +31,6 @@ func main() {
 		GraphiQL: true, // Enable GraphiQL UI
 	})
 
-	// Routes
-	r.POST("/api/format", formatJSON)
-
 	// GraphQL endpoint
 	r.POST("/graphql", func(c *gin.Context) {
 		h.ServeHTTP(c.Writer, c.Request)
@@ -50,37 +45,4 @@ func main() {
 	if err := r.Run(":8080"); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
-}
-
-func formatJSON(c *gin.Context) {
-	var input struct {
-		JSON string `json:"json"`
-	}
-
-	if err := c.BindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid request body",
-		})
-		return
-	}
-
-	formatted, err := prettyJSON([]byte(input.JSON))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid JSON input",
-		})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"formatted": string(formatted),
-	})
-}
-
-func prettyJSON(input []byte) ([]byte, error) {
-	var temp interface{}
-	if err := json.Unmarshal(input, &temp); err != nil {
-		return nil, err
-	}
-	return json.MarshalIndent(temp, "", "  ")
 }

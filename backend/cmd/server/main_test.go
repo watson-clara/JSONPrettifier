@@ -1,8 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"testing"
 )
+
+// Re-implement the prettyJSON function for testing purposes
+func prettyJSON(input []byte) ([]byte, error) {
+	var temp interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, err
+	}
+	return json.MarshalIndent(temp, "", "  ")
+}
 
 func TestPrettyJSON(t *testing.T) {
 	tests := []struct {

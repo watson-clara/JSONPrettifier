@@ -1,46 +1,131 @@
-# Getting Started with Create React App
+# JSONPrettifier
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern web application that formats and beautifies JSON data using GraphQL.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Clean, intuitive user interface
+- JSON formatting with proper indentation
+- GraphQL API for data processing
+- Interactive GraphiQL interface for API exploration
+- Cross-platform compatibility
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Technology Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- Go
+- Gin Web Framework
+- GraphQL
 
-### `npm run build`
+### Frontend
+- React
+- TypeScript
+- Axios
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Go 1.16 or higher
+- Node.js 14 or higher
+- npm or yarn
 
-### `npm run eject`
+### Backend Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install Go dependencies:
+   ```bash
+   go mod tidy
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Build and run the server:
+   ```bash
+   go run cmd/server/main.go
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   The server will start on http://localhost:8080
 
-## Learn More
+4. Access the GraphiQL interface:
+   Open http://localhost:8080/graphiql in your browser to explore the GraphQL API.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Frontend Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Navigate to the project root directory
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+   or
+   ```bash
+   yarn install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+   or
+   ```bash
+   yarn start
+   ```
+
+   The application will be available at http://localhost:3000
+
+## Usage
+
+1. Enter or paste your JSON data into the input field
+2. Click the "Format JSON" button
+3. View the formatted JSON in the output area
+
+### Example Screenshots
+
+
+#### Formatted JSON Output
+![Formatted JSON Output](assets/formatedJSON.png)
+
+#### Input JSON Interface
+![Input JSON Interface](assets/unformattedJSON.png)
+
+## API
+
+### GraphQL Endpoint
+
+- URL: `http://localhost:8080/graphql`
+- Method: `POST`
+
+### Example Query
+
+```graphql
+query {
+  formatJSON(input: "{\"name\":\"John\",\"age\":30}")
+}
+```
+
+## Testing
+
+### Backend Tests
+
+Run the backend tests with:
+
+```bash
+cd backend
+go test ./...
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- GraphQL for providing a flexible query language
+- Go for a robust backend runtime
+- React for an efficient frontend framework
