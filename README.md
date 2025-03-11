@@ -2,6 +2,7 @@
 
 A modern web application that formats and beautifies JSON data using GraphQL.
 
+
 ## Features
 
 - Clean, intuitive user interface
@@ -119,6 +120,20 @@ Run the backend tests with:
 cd backend
 go test ./...
 ```
+
+## Continuous Integration and Deployment
+
+This project uses GitHub Actions for continuous integration and deployment. The workflow automatically:
+
+1. Runs tests for the backend Go code
+2. Builds the frontend React application
+3. Deploys to production when changes are pushed to the main branch
+
+You can view the workflow configuration in `.github/workflows/ci-cd.yml`.
+
+### CI/CD Status
+
+The current status of the CI/CD pipeline can be seen at the top of this README or on the [Actions tab](https://github.com/watson-clara/JSONPrettifier/actions) of the GitHub repository.
 
 ## License
 
